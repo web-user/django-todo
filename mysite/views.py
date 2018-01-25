@@ -7,5 +7,3 @@ def index(request):
     output = ', '.join([qust for n in start_project_list])
     return HttpResponse(output)
 
-# def registration(request):
-#     return HttpResponse('Page register')

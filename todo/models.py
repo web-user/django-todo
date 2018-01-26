@@ -36,3 +36,21 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Todo(models.Model):
+    title = models.CharField(max_length=250)
+    project_title = models.CharField(max_length=100)
+    project_color = models.TextField()
+    date_todo = models.DateTimeField(auto_now_add=True)
+
+
+class Project(models.Model):
+    todo = models.ForeignKey(Todo, on_delete=models.CASCADE)
+    title = models.CharField(max_length=250)
+    color = models.TextField()
+
+
+
+
+

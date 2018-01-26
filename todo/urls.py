@@ -6,11 +6,13 @@ from django.contrib.auth.views import logout_then_login
 from . import views
 
 urlpatterns = [
-    path('todo/', views.PostListView.as_view(), name='home'),
-    path('login/', login, name='login'),
+    path('todo/', views.TodoListView.as_view(), name='home'),
+    path('login/', views.LoginFormView.as_view(), name='login'),
     path('registration/', views.RegisterFormView.as_view(), name='registration'),
 
     path('logout/', views.logout_view, name='logout'),
+
+    path('project/', views.ProjectFormView.as_view(), name='project'),
 
 ]
 app_name = 'todo'

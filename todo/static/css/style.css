@@ -1,3 +1,121 @@
-.container.marketing{
-    margin-top: 100px;
+ .container-fluid{
+     margin-top: 56px;
+
+ }
+
+ .add-form-field{
+     text-align: initial;
+ }
+
+ .input_fields_wrap .field-hide{
+    display: none;
+ }
+
+ .add_field_button, .add_field_project_button{
+     border: none;
+    background: #fff;
+ }
+
+ .sidebar1 {
+    background: #F17153;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#F17153, #F58D63, #f1ab53);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#F17153, #F58D63, #f1ab53);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#F17153, #F58D63, #f1ab53);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#F17153, #F58D63, #f1ab53);
+    /* Standard syntax */
+    padding: 0px;
+    min-height: 100%;
+}
+.logo {
+    max-height: 130px;
+}
+.logo>img {
+    margin-top: 30px;
+    padding: 3px;
+    border: 3px solid white;
+    border-radius: 100%;
+}
+.list {
+    color: #fff;
+    list-style: none;
+    padding-left: 0px;
+}
+.list::first-line {
+    color: rgba(255, 255, 255, 0.5);
+}
+.list> li, h5 {
+    padding: 5px 0px 5px 40px;
+}
+.list>li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-left: 5px solid white;
+    color: white;
+    font-weight: bolder;
+    padding-left: 35px;
+}.main-content{
+text-align:center;
+}
+
+ .color-field{
+     position: relative;
+     background: #fff;
+ }
+
+.color-field input[type="color"]{
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    padding: 4px;
+    border-color: #fff;
+}
+
+.content-project{
+    display: none;
+}
+
+.block-footer{
+    margin-top: 25px;
+}
+
+
+ .color-field .field-show{
+    float: right;
+    width: 80%;
+    height: 27px;
+    border: none;
+ }
+
+
+.NiceForm fieldset {
+    font-weight: bold;
+    display: inline;
+    border: 1px solid black;
+    padding: 10px 20px 10px 20px;
+}
+.NiceForm legend {
+    color: black;
+    font: italic 12pt Trebauchet, Garamond, serif;
+}
+.NiceForm > div, .NiceForm .box {
+    display: table-row;
+}
+.NiceForm label, .NiceForm input, .NiceForm select, .NiceForm textarea {
+    display: table-cell;
+}
+.NiceForm label {
+    font-weight: bold;
+    cursor: pointer;
+    padding-right: 1em;
+}
+.ColorPicker {
+    border: 1px solid gray;
+    height: 1em;
+    width: 1em;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

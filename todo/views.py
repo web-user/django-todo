@@ -13,6 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 from rest_framework import routers, serializers, viewsets
 
 from django.views.generic import FormView, ListView
+from django.views.generic.edit import CreateView
 import json
 
 
@@ -69,7 +70,7 @@ def logout_view(request):
     # Redirect to a success page.
 
 
-class ProjectFormView(FormView):
+class ProjectCreate(FormView):
 
     model = Project
     

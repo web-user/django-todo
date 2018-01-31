@@ -20,7 +20,7 @@
                         <li>Sketching</li>
                         <li>Horse Riding</li>
                     </ul>
-                    <form class="add-project" id="form_project" method="post" action="{% url 'todo:project' %}">
+                    <form class="add-project" id="form_project" method="post" action="{% url 'todo:project_create' %}">
                         {% csrf_token %}
                         <div class="add-form-field">
 

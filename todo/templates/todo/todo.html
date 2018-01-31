@@ -24,11 +24,19 @@
             </li>
           </ul>
           <ul class="navbar-nav mt-2 mt-md-0">
-            <li class="nav-item">
-                {% if request.user.is_authenticated %}
-                  <a class="nav-link" href="{% url "todo:logout" %}">Logout</a>
-                {% endif %}
-            </li>
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "todo:logout" %}">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "todo:login" %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "todo:registration" %}">Registration</a>
+                </li>
+            {% endif %}
+
           </ul>
 
         </div>

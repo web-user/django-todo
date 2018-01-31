@@ -48,6 +48,9 @@ class Todo(models.Model):
     project_color = models.TextField()
     date_todo = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
 
 
 

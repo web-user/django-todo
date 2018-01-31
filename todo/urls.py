@@ -12,7 +12,7 @@ urlpatterns = [
 
     path('logout/', views.logout_view, name='logout'),
 
-    path('project/', views.ProjectFormView.as_view(), name='project'),
+    path('project-create/', views.ProjectCreate.as_view(), name='project_create'),
 
 ]
 app_name = 'todo'

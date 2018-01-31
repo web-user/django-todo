@@ -54,19 +54,18 @@ jQuery(document).ready(function($){
 
 	$(".button-add").click(function(e){
 		e.preventDefault();
-		var data_text = $(this).attr("data-id");
-		var date_calor = $('#favcolor').val();
+
+		var data_calor = $('#favcolor').val();
 
 		var data_url = $("#form_project").attr('action');
 
-		console.log(date_calor);
+		console.log(data_calor);
 
 		$.ajax({
 			type: "POST",
 			url: data_url,
 			data: {
-				formData: data_text,
-				date_sl : 'hello'
+				data_color : data_calor
 			},
 			success: function(res){
 				console.log(res)

@@ -6,8 +6,11 @@ from django.urls import reverse
 from .forms import LoginForm
 from django.shortcuts import redirect
 from django.contrib.auth import logout
-from .models import Post
+from .models import Post, Project, Todo
 from django.contrib.auth.forms import UserCreationForm
+
+
+from rest_framework import routers, serializers, viewsets
 
 from django.views.generic import FormView, ListView
 import json
@@ -57,7 +60,7 @@ class TodoListView(LoginRequiredMixin, ListView):
     login_url = '/login/'
     template_name = 'todo/list.html'
     context_object_name = 'posts'
-    model = Post
+    model = Project
 
 
 def logout_view(request):
@@ -65,9 +68,20 @@ def logout_view(request):
     return redirect(reverse('todo:login'))
     # Redirect to a success page.
 
+
 class ProjectFormView(FormView):
+
+    model = Project
     
     def post(self, request):
-        print('>>',request.POST['date_sl'])
+
+        p1 = request.POST['data_color']
+        p2 = 'Test'
+
+        proj = Project(title=p1, color=p2)
+        proj.save()
+        print(proj)
+
+        print('>>',request.POST['data_color'])
         return redirect('/todo/')
 

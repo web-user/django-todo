@@ -14,5 +14,8 @@ urlpatterns = [
 
     path('project-create/', views.ProjectCreate.as_view(), name='project_create'),
 
+    # projec/2/delete/
+    path('project/<int:pk>/delete/', views.ProjecDelete.as_view(), name='project_delete'),
+
 ]
 app_name = 'todo'

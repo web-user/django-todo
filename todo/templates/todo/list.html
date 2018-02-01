@@ -7,48 +7,114 @@
 
         <!-- Three columns of text below the carousel -->
         <div class="row">
-            <div class="col-md-2 col-sm-4 sidebar1">
-
-                <div class="left-navigation">
-
-                    <ul class="list">
-                        <h5><strong>Todo list</strong></h5>
-                        <li>Hiking</li>
-                        <li>Rafting</li>
-                        <li>Badminton</li>
-                        <li>Tennis</li>
-                        <li>Sketching</li>
-                        <li>Horse Riding</li>
-                    </ul>
-                    <form class="add-project" id="form_project" method="post" action="{% url 'todo:project_create' %}">
-                        {% csrf_token %}
-                        <div class="add-form-field">
-
-                            <div class="input_fields_wrap_project">
-                                <button class="add_field_project_button"><i class="fa fa-plus" aria-hidden="true"></i> Add Task</button>
-
-                                <div class="content-project">
-                                    <div class="color-field">
-                                        <input type="color" id="favcolor" name="color" value="" />
-                                        <input class="field-show" type="text" name="project[]"/>
-                                    </div>
-
-
-                                      <div class="form-group block-footer">
-                                        <a href="#" class="button-add btn btn-primary">Add</a>
-                                          <button type="button" class="btn btn-secondary close-block" >Close</button>
-                                      </div>
-
-                                </div>
 
 
 
-                            </div>
+
+<div class="edit-menu-wrap" clear>
+	<div class="cm-all-menu-items">
+		<div class="cm-project-list">
+			<ul>
+                {% for item in posts %}
+
+                <li data-id="{{item.id}}">
+                    <div class="cm-proj-mane">
+                        <a href="#{{item.id}}">
+                            <i class="fa fa-cube" aria-hidden="true"></i>{{item.title}}
+                            <span class="color-project">{{item.color}}</span>
+                        </a>
+                    </div>
+                    <div class="cm-proj-option">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        <div class="project-option">
+                            <span class="color-project">
+                                <a href="#{{item.id}}">Edit</a>
+                            </span>
+                            <span class="color-project">
+
+                                <form action="{% url 'todo:project_delete' item.id %}" method="post">
+                                    <input type="hidden" name="project_id" value="{{item.id}}">
+                                    <button type="submit">Delete</button>
+
+                                </form>
+                            </span>
                         </div>
-                    </form>
+                    </div>
+                </li>
+                {% endfor %}
 
-                </div>
-            </div>
+			</ul>
+		</div>
+		<div class="cm-file-menu-option">
+			<ul><li modal-click="add-website" class="cm-add-website" title="Add Project"><i class="fa fa-plus" aria-hidden="true"></i></li></ul>
+		</div>
+	</div>
+	<div class="cm-all-dynamic-data">
+		<div class="cm-dynamic-data">
+		<ul id="sortable">
+		</ul>
+			</div>
+		<button class="add btn-def">Add</button>
+	</div>
+</div>
+
+
+<div class="editor-wrapper">
+	<h2><i class="fa fa-database" aria-hidden="true"></i>Into Your Database<span><i class="fa fa-times" aria-hidden="true"></i></span></h2>
+	<div id="editor"></div>
+</div>
+<div class="cm-menu-wrapper">
+	<close><i class="fa fa-times" aria-hidden="true"></i></close>
+	<menu></menu>
+</div>
+
+
+<div class="modals-overlay"></div>
+<div class="cm-model-wrapper">
+<div class="cm-project-modal" modal-data="add-website">
+	<div class="cm-project-modal-header">
+		<label>Create New Bucket</label>
+	</div>
+	<div class="cm-project-setting-inner-wrapper">
+		<div class="cm-form-wrapper">
+			<label>Website Title<i>*</i></label>
+			<input type="text" name="website-name">
+		</div>
+		<div class="cm-form-wrapper">
+			<label>Website URL<i>*</i></label>
+			<input type="text" name="website-url">
+		</div>
+		<div class="cm-form-wrapper">
+			<label>Menu Type<i>*</i></label>
+			<select name="menu-type">
+				<option>Navigation</option>
+				<option>Context Menu</option>
+			</select>
+		</div>
+		<div class="cm-advanced-setting">
+			<div class="advanced setting-inner" clear><span class="more-setting">Advanced Setting</span><i class="fa fa-caret-right" aria-hidden="true"></i></div>
+			<div class="cm-adv-form-wrapper">
+				<div class="cm-form-wrapper">
+					<label>Website Header Data<span>For CORS Authentication</span></label>
+					<textarea name="website-header"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="cm-project-modal-footer">
+		<div><span class="disclaimer">* Important to input</span></div>
+		<div class="form-action-box">
+			<button class="data-file-save btn-def" model-close>Save</button>
+		</div>
+	</div>
+</div>
+	</div>
+
+
+
+
+
+
             <div class="col-md-10 col-sm-8 main-content">
                 {% if request.user.is_authenticated %}
                       Hello {{ request.user.username }},
@@ -64,7 +130,7 @@ ert
                         <div class="col-lg-4">
                             <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
                             <h2>{{item.title}}</h2>
-                            <p>{{item.body}}</p>
+                            <p>{{item.color}}</p>
                             <p class="date">Published {{ item.publish }} by {{ item.author }}</p>
                             {{ item.body|linebreaks }}
                             <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>

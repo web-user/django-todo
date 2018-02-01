@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from django.urls import reverse
+from django.urls import reverse_lazy, reverse
 
 from .forms import LoginForm
 from django.shortcuts import redirect
@@ -13,7 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 from rest_framework import routers, serializers, viewsets
 
 from django.views.generic import FormView, ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import json
 
 
@@ -76,8 +76,8 @@ class ProjectCreate(FormView):
     
     def post(self, request):
 
-        p1 = request.POST['data_color']
-        p2 = 'Test'
+        p1 = request.POST['data_title']
+        p2 = request.POST['data_color']
 
         proj = Project(title=p1, color=p2)
         proj.save()
@@ -86,3 +86,11 @@ class ProjectCreate(FormView):
         print('>>',request.POST['data_color'])
         return redirect('/todo/')
 
+
+class ProjecUpdate(UpdateView):
+    model = Project
+
+
+class ProjecDelete(DeleteView):
+    model = Project
+    success_url = reverse_lazy('todo:home')

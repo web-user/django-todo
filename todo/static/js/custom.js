@@ -52,31 +52,56 @@ jQuery(document).ready(function($){
 
 
 
+        function getCredentials() {
+        var paramList = "";
+
+
+
+
+        var data_calor = $('#favcolor').val();
+
+            var data_title = $('.project-title').val();
+
+            var data_url = $("#form_project").attr('action');
+
+            var project_id;
+
+            console.log(data_calor);
+
+            $.ajax({
+                type: "POST",
+                url: data_url,
+                data: {
+                    data_color : data_calor,
+                    data_title: data_title
+                },
+                async: false,
+                success: function(res){
+
+                    paramList = res;
+                },
+                error: function(){
+                    console.log("Error !!!")
+                }
+            });
+
+
+        return paramList;
+    };
+
+
+
+
+
+
 	$(".button-add").click(function(e){
 		e.preventDefault();
 
 		var data_calor = $('#favcolor').val();
 
-		var data_title = $('.project-title').val();
-
-		var data_url = $("#form_project").attr('action');
-
 		console.log(data_calor);
 
-		$.ajax({
-			type: "POST",
-			url: data_url,
-			data: {
-				data_color : data_calor,
-                data_title: data_title
-			},
-			success: function(res){
-				console.log(res)
-			},
-			error: function(){
-				console.log("Error !!!")
-			}
-		});
+
 
         console.log($(this).text());
 	});
@@ -202,6 +227,11 @@ $(document).on("click", ".editor-wrapper,.nav-app-option", function(e) {
 });
 $(".data-file-save").click(function() {
     setTimeout(function() {
+
+        var get_id = getCredentials();
+
+        console.log(get_id);
+
         var websiteName = $('[name="website-name"]').val();
         var websiteURL = $('[name="website-url"]').val();
         var websiteHeader = $('[name="website-header"]').val();

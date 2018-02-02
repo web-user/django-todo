@@ -83,8 +83,10 @@ class ProjectCreate(FormView):
         proj.save()
         print(proj)
 
+        ajax_text = proj
+
         print('>>',request.POST['data_color'])
-        return redirect('/todo/')
+        return HttpResponse(ajax_text)
 
 
 class ProjecUpdate(UpdateView):

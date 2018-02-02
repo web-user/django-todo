@@ -46,7 +46,11 @@
 			</ul>
 		</div>
 		<div class="cm-file-menu-option">
-			<ul><li modal-click="add-website" class="cm-add-website" title="Add Project"><i class="fa fa-plus" aria-hidden="true"></i></li></ul>
+			<ul>
+                <li modal-click="add-website" class="cm-add-website" title="Add Project">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </li>
+            </ul>
 		</div>
 	</div>
 	<div class="cm-all-dynamic-data">
@@ -69,46 +73,49 @@
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
 <div class="modals-overlay"></div>
 <div class="cm-model-wrapper">
-<div class="cm-project-modal" modal-data="add-website">
-	<div class="cm-project-modal-header">
-		<label>Create New Bucket</label>
-	</div>
-	<div class="cm-project-setting-inner-wrapper">
-		<div class="cm-form-wrapper">
-			<label>Website Title<i>*</i></label>
-			<input type="text" name="website-name">
-		</div>
-		<div class="cm-form-wrapper">
-			<label>Website URL<i>*</i></label>
-			<input type="text" name="website-url">
-		</div>
-		<div class="cm-form-wrapper">
-			<label>Menu Type<i>*</i></label>
-			<select name="menu-type">
-				<option>Navigation</option>
-				<option>Context Menu</option>
-			</select>
-		</div>
-		<div class="cm-advanced-setting">
-			<div class="advanced setting-inner" clear><span class="more-setting">Advanced Setting</span><i class="fa fa-caret-right" aria-hidden="true"></i></div>
-			<div class="cm-adv-form-wrapper">
-				<div class="cm-form-wrapper">
-					<label>Website Header Data<span>For CORS Authentication</span></label>
-					<textarea name="website-header"></textarea>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="cm-project-modal-footer">
-		<div><span class="disclaimer">* Important to input</span></div>
-		<div class="form-action-box">
-			<button class="data-file-save btn-def" model-close>Save</button>
-		</div>
-	</div>
+    <div class="cm-project-modal" modal-data="add-website">
+
+        <form class="add-project" id="form_project" method="post" action="{% url 'todo:project_create' %}">
+            {% csrf_token %}
+        <div class="cm-project-modal-header">
+            <label>Create New Bucket</label>
+        </div>
+        <div class="cm-project-setting-inner-wrapper">
+            <div class="cm-form-wrapper">
+                <label>Website Title<i>*</i></label>
+                <input type="text" name="website-name">
+            </div>
+            <div class="cm-form-wrapper">
+                <label>Website URL<i>*</i></label>
+                <input type="text" name="website-url">
+            </div>
+          <div class="color-field">
+               <input type="color" id="favcolor" name="color" value="" />
+               <input class="field-show project-title" type="text" name="project[]"/>
+          </div>
+
+        </div>
+        <div class="cm-project-modal-footer">
+            <div><span class="disclaimer">* Important to input</span></div>
+            <div class="form-action-box">
+                <button class="data-file-save btn-def button-add" model-close>Save</button>
+            </div>
+        </div>
+        </form>
+    </div>
 </div>
-	</div>
 
 
 

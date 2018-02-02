@@ -11,7 +11,7 @@
 
 
 
-<div class="edit-menu-wrap" clear>
+<div class="edit-menu-wrap col-md-12" clear>
 	<div class="cm-all-menu-items">
 		<div class="cm-project-list">
 			<ul>
@@ -28,8 +28,45 @@
                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                         <div class="project-option">
                             <span class="color-project">
-                                <a href="#{{item.id}}">Edit</a>
+                                <a data-toggle="modal" data-target="#projectedit_{{item.id}}">Edit</a>
                             </span>
+
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="projectedit_{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+
+                                    <form action="{% url 'todo:project_update' item.id %}" method="post">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="projectedit_{{item.id}}_Title">Modal title {{item.id}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label >Title</label>
+                                                <input type="text" class="form-control" name="title" value="{{item.title}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Color</label>
+                                                <input type="text" class="form-control" name="color" value="{{item.color}}">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+
+                                    </form>
+
+
+                                </div>
+                              </div>
+                            </div>
+
                             <span class="color-project">
 
                                 <form action="{% url 'todo:project_delete' item.id %}" method="post">
@@ -55,106 +92,142 @@
 	</div>
 	<div class="cm-all-dynamic-data">
 		<div class="cm-dynamic-data">
-		<ul id="sortable">
-		</ul>
-			</div>
-		<button class="add btn-def">Add</button>
+            <ul id="sortable">
+
+                <li>
+                    <div class="child-wrap">
+                        <div class="drag">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </div>
+                        <div class="toggle">
+                            <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                        <div class="input-menu-items">
+                            <span class="cm-text-data" >Hello</span>
+                            <span class="cm-text-function" >Hello</span>
+                        </div>
+                        <div class="clone">
+                            <i class="fa fa-clone" aria-hidden="true"></i>
+                        </div>
+                        <div class="delete">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="todo-list">
+                    <div class="child-wrap">
+                        <div class="drag">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </div>
+                        <div class="toggle">
+                            <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                        <div class="input-menu-items">
+                            <input type="text" class="cm-text-data" value="Hello" placeholder="text">
+                            <input type="text" class="cm-text-function" value="Hello" placeholder="functionality">
+                        </div>
+
+                            <select name="hero[]">
+
+                                {% for item in posts %}
+
+
+                                <option value="{{item.title}}">{{item.title}}</option>
+
+                                {% endfor %}
+
+                            </select>
+
+
+                        <div class="clone">
+                            <i class="fa fa-clone" aria-hidden="true"></i>
+                        </div>
+                        <div class="delete">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>
+		<button class="add btn-def btn">Add</button>
+        <button class="form-close btn">Close</button>
+
+
+
+
+
+
+
+
+        <div class="col-md-4">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <table class="table">
+
+
+
+        </table>
+        <input type="submit" value="Save"/> <a href="">back to the list</a>
+    </form>
+</div>
+
+
+
+
+
+
+
 	</div>
 </div>
 
 
-<div class="editor-wrapper">
-	<h2><i class="fa fa-database" aria-hidden="true"></i>Into Your Database<span><i class="fa fa-times" aria-hidden="true"></i></span></h2>
-	<div id="editor"></div>
-</div>
-<div class="cm-menu-wrapper">
-	<close><i class="fa fa-times" aria-hidden="true"></i></close>
-	<menu></menu>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="modals-overlay"></div>
-<div class="cm-model-wrapper">
-    <div class="cm-project-modal" modal-data="add-website">
-
-        <form class="add-project" id="form_project" method="post" action="{% url 'todo:project_create' %}">
-            {% csrf_token %}
-        <div class="cm-project-modal-header">
-            <label>Create New Bucket</label>
-        </div>
-        <div class="cm-project-setting-inner-wrapper">
-            <div class="cm-form-wrapper">
-                <label>Website Title<i>*</i></label>
-                <input type="text" name="website-name">
+            <div class="editor-wrapper">
+                <h2><i class="fa fa-database" aria-hidden="true"></i>Into Your Database<span><i class="fa fa-times" aria-hidden="true"></i></span></h2>
+                <div id="editor"></div>
             </div>
-            <div class="cm-form-wrapper">
-                <label>Website URL<i>*</i></label>
-                <input type="text" name="website-url">
+            <div class="cm-menu-wrapper">
+                <close><i class="fa fa-times" aria-hidden="true"></i></close>
+                <menu></menu>
             </div>
-          <div class="color-field">
-               <input type="color" id="favcolor" name="color" value="" />
-               <input class="field-show project-title" type="text" name="project[]"/>
-          </div>
-
-        </div>
-        <div class="cm-project-modal-footer">
-            <div><span class="disclaimer">* Important to input</span></div>
-            <div class="form-action-box">
-                <button class="data-file-save btn-def button-add" model-close>Save</button>
-            </div>
-        </div>
-        </form>
-    </div>
-</div>
 
 
+            <div class="modals-overlay"></div>
+            <div class="cm-model-wrapper">
+                <div class="cm-project-modal" modal-data="add-website">
 
-
-
-
-            <div class="col-md-10 col-sm-8 main-content">
-                {% if request.user.is_authenticated %}
-                      Hello {{ request.user.username }},
-                {% endif %}
-
-
-ert
-
-
-                <div class="row">
-                    {% for item in posts %}
-
-                        <div class="col-lg-4">
-                            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                            <h2>{{item.title}}</h2>
-                            <p>{{item.color}}</p>
-                            <p class="date">Published {{ item.publish }} by {{ item.author }}</p>
-                            {{ item.body|linebreaks }}
-                            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-                        </div><!-- /.col-lg-4 -->
-                    {% endfor %}
-                    <div class="col-md-12">
-                        <form class="todo-add" method="post" action="">
-                            <div class="add-form-field">
-                                <div class="input_fields_wrap">
-                                    <button class="add_field_button"><i class="fa fa-plus" aria-hidden="true"></i> Add Task</button>
-                                    <div><input type="text" class="field-hide" name="mytext[]"></div>
-                                </div>
-                            </div>
-                        </form>
+                    <form class="add-project" id="form_project" method="post" action="{% url 'todo:project_create' %}">
+                        {% csrf_token %}
+                    <div class="cm-project-modal-header">
+                        <label>Create New Bucket</label>
                     </div>
+                    <div class="cm-project-setting-inner-wrapper">
+                        <div class="cm-form-wrapper">
+                            <label>Website Title<i>*</i></label>
+                            <input type="text" name="website-name">
+                        </div>
+                        <div class="cm-form-wrapper">
+                            <label>Website URL<i>*</i></label>
+                            <input type="text" name="website-url">
+                        </div>
+                      <div class="color-field">
+                           <input type="color" id="favcolor" name="color" value="" />
+                           <input class="field-show project-title" type="text" name="title"/>
+                      </div>
+
+                    </div>
+                    <div class="cm-project-modal-footer">
+                        <div><span class="disclaimer">* Important to input</span></div>
+                        <div class="form-action-box">
+                            <button class="data-file-save btn-def button-add" model-close>Save</button>
+                        </div>
+                    </div>
+                    </form>
                 </div>
             </div>
+
 
 
 

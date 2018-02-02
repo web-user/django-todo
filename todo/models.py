@@ -41,8 +41,10 @@ class Project(models.Model):
     title = models.CharField(max_length=250)
     color = models.TextField()
 
+    objects = models.Manager()
+
     def __str__(self):
-        return str(self.id)
+        return self.title
 
 class Todo(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)

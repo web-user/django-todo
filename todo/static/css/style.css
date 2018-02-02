@@ -213,6 +213,18 @@ body {
     height: 35px;
 }
 
+#sortable span.cm-text-data {
+    width: 40%;
+    display: inline-block;
+    padding: 6px;
+}
+
+#sortable span.cm-text-function {
+    width: 40%;
+    display: inline-block;
+    padding: 6px;
+}
+
 #sortable input.cm-text-data {
     margin-right: 5px;
     margin-left: 0;
@@ -706,6 +718,11 @@ body {
 .drag {
     cursor: move !important;
 }
+
+#sortable li.todo-list{
+    display: none;
+}
+
 /*---------Flex Model CSS---------|END--------*/
 .advanced.setting-inner {
     padding: 10px 0;

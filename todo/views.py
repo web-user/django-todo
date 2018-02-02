@@ -3,14 +3,17 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy, reverse
 
-from .forms import LoginForm
+from .forms import LoginForm, TodoFormSet, TodoForm
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 from .models import Post, Project, Todo
+from .serializers import ProjectSerializer
 from django.contrib.auth.forms import UserCreationForm
 
 
 from rest_framework import routers, serializers, viewsets
+
+from rest_framework.views import APIView
 
 from django.views.generic import FormView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -56,12 +59,13 @@ class RegisterFormView(FormView):
         return HttpResponse('Invalid login')
 
 
-class TodoListView(LoginRequiredMixin, ListView):
+class ProjectListView(LoginRequiredMixin, ListView):
 
     login_url = '/login/'
     template_name = 'todo/list.html'
     context_object_name = 'posts'
     model = Project
+    form_class = TodoForm
 
 
 def logout_view(request):
@@ -70,29 +74,30 @@ def logout_view(request):
     # Redirect to a success page.
 
 
-class ProjectCreate(FormView):
+class ProjectCreate(CreateView):
 
     model = Project
-    
-    def post(self, request):
+    fields = ['title', 'color']
+    success_url = reverse_lazy('todo:home')
 
-        p1 = request.POST['data_title']
-        p2 = request.POST['data_color']
-
-        proj = Project(title=p1, color=p2)
-        proj.save()
-        print(proj)
-
-        ajax_text = proj
-
-        print('>>',request.POST['data_color'])
-        return HttpResponse(ajax_text)
 
 
 class ProjecUpdate(UpdateView):
     model = Project
+    fields = ['title', 'color']
+    success_url = reverse_lazy('todo:home')
 
 
 class ProjecDelete(DeleteView):
     model = Project
     success_url = reverse_lazy('todo:home')
+
+
+class ProjectTodoCreate(CreateView):
+
+    form_class = TodoForm
+    template_name = 'todo/list.html'
+
+
+
+

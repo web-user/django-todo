@@ -1,0 +1,267 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$OdqcK0vyoUaY$8Tcj/UCXGrB1zRcdtJfZY78QrgZ3oFE2GhgOc5unFwM=",
+        "last_login": "2018-02-01T15:17:39.311Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2018-01-24T07:43:26.951Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$bTMmbP8Gpglc$XHhTGu2Qbq9CvPKgeAfyFOJDr7KhlyfRVYbyO8vha5Q=",
+        "last_login": "2018-01-26T08:47:33.454Z",
+        "is_superuser": false,
+        "username": "vasa",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2018-01-26T08:47:13.870Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$100000$c94ePEihrtZM$iZaMZ1/GTm6TOEGlePS8Mfu7p09oL98TiVof1I/eUiU=",
+        "last_login": "2018-01-26T08:49:21.457Z",
+        "is_superuser": false,
+        "username": "Ivan",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2018-01-26T08:49:21.086Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "1utv41c4ps46t2l6erymu0ef1esl19cc",
+    "fields": {
+        "session_data": "NDNhMGIyMDkzZmYzMTU4MTgwMDQ1YWNjOGQxMjY2NDUyOTUxNjMyYTp7fQ==",
+        "expire_date": "2018-02-08T13:50:44.741Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2qkbq0dezrvu4btdxsbf6rfyo6edtzye",
+    "fields": {
+        "session_data": "NDNhMGIyMDkzZmYzMTU4MTgwMDQ1YWNjOGQxMjY2NDUyOTUxNjMyYTp7fQ==",
+        "expire_date": "2018-02-09T08:01:27.082Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "8durzzvumdnqhgb0d9h5n62aksf7nild",
+    "fields": {
+        "session_data": "NDNhMGIyMDkzZmYzMTU4MTgwMDQ1YWNjOGQxMjY2NDUyOTUxNjMyYTp7fQ==",
+        "expire_date": "2018-02-09T08:02:22.428Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "91nx1wcqfpz26cj81mguir2vpdavc35b",
+    "fields": {
+        "session_data": "NDNhMGIyMDkzZmYzMTU4MTgwMDQ1YWNjOGQxMjY2NDUyOTUxNjMyYTp7fQ==",
+        "expire_date": "2018-02-09T07:57:26.327Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "mdwh1t9d8yqlhjdvz1yr3wom6k8z0bbk",
+    "fields": {
+        "session_data": "Yzc1NTNhMWQ4MGIwZjIzODZiMGY3ZjY2N2E5NmViYTFiZDc2NGNlMjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZjgwMTI1MDBkZTc3MGFkMWY1NDhiYzllNjQ3NDJiMzU5OGQwYTAwNyIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+        "expire_date": "2018-02-15T15:17:39.319Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "wngk3ff43hc350097po2ynm6kuteay3b",
+    "fields": {
+        "session_data": "NDNhMGIyMDkzZmYzMTU4MTgwMDQ1YWNjOGQxMjY2NDUyOTUxNjMyYTp7fQ==",
+        "expire_date": "2018-02-09T07:58:17.853Z"
+    }
+},
+{
+    "model": "todo.post",
+    "pk": 1,
+    "fields": {
+        "title": "My Post",
+        "slug": "df",
+        "author": 1,
+        "body": "Post neeew",
+        "publish": "2018-01-24T10:47:12Z",
+        "created": "2018-01-24T10:47:52.590Z",
+        "updated": "2018-01-24T10:47:52.590Z",
+        "status": "published"
+    }
+},
+{
+    "model": "todo.post",
+    "pk": 2,
+    "fields": {
+        "title": "Welcom to Django",
+        "slug": "Welcom",
+        "author": 1,
+        "body": "Welcom to Django Lorem ipsun",
+        "publish": "2018-01-25T14:20:29Z",
+        "created": "2018-01-25T14:24:03.229Z",
+        "updated": "2018-01-25T14:24:17.259Z",
+        "status": "published"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 11,
+    "fields": {
+        "title": "data_title",
+        "color": "#ce2121"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 16,
+    "fields": {
+        "title": "veee",
+        "color": "#f21111"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 18,
+    "fields": {
+        "title": "ty",
+        "color": "#000000"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 19,
+    "fields": {
+        "title": "fff",
+        "color": "#f30d0d"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 20,
+    "fields": {
+        "title": "bbb",
+        "color": "#000000"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 21,
+    "fields": {
+        "title": "nnn",
+        "color": "#000000"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 22,
+    "fields": {
+        "title": "vssss",
+        "color": "#000000"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 23,
+    "fields": {
+        "title": "eeee",
+        "color": "#000000"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 24,
+    "fields": {
+        "title": "bbb",
+        "color": "#000000"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 34,
+    "fields": {
+        "title": "vbvb",
+        "color": "#000000"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 35,
+    "fields": {
+        "title": "ididi",
+        "color": "#f01e1e"
+    }
+},
+{
+    "model": "todo.project",
+    "pk": 38,
+    "fields": {
+        "title": "dfgd",
+        "color": "#000000"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2018-01-24T10:47:52.592Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "My Post",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2018-01-25T14:24:03.231Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Welcom to Django",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2018-01-25T14:24:17.260Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Welcom to Django",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"body\"]}}]"
+    }
+}
+]

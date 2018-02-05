@@ -42,26 +42,71 @@ jQuery(document).ready(function($){
             $(add_button_project).css('display', 'block');
         })
 
-        $(wrapper_project).on("click",".button-add", function(e){ //user click on remove text
-            e.preventDefault();
+        // $(wrapper_project).on("click",".button-add", function(e){ //user click on remove text
+        //     // e.preventDefault();
+        //
+        //     $(content_project).hide( 1000 );
+        //
+        //     $(add_button_project).css('display', 'block');
+        // })
 
-            $(content_project).hide( 1000 );
 
-            $(add_button_project).css('display', 'block');
-        })
 
+        $( ".add-form-content-1" ).submit(function( event ) {
+
+            event.preventDefault();
+
+
+
+
+
+            var data_title = '1';
+
+            var data_url = $(this).attr('action');
+
+
+            console.log(data_url);
+
+            $.ajax({
+                type: "POST",
+                url: data_url,
+                data: $( this ).serialize(),
+
+                success: function(res){
+
+                    console.log(res);
+
+                    window.location.href = window.location;
+                },
+                error: function(){
+                    console.log("Error !!!")
+                }
+            });
+
+
+        });
 
 
 	console.log('test script')
 
 
+        $(document).on('click', '.todo-option', function() {
+
+            $(this).children(".block-setting").toggle();
+
+            // $('.todo-list').hide(1000);
+            // $('.add-form').show(1000);
+
+            // menu(a);
+        });
 
 
 
+	// Getter
 
 
-
-
+// Setter
+$( "#id_date_todo" ).datepicker();
 
 
 
@@ -106,9 +151,10 @@ jQuery(document).ready(function($){
             var li = $(ul).append('<li> <div class="child-wrap"> <div class="drag"><i class="fa fa-bars" aria-hidden="true"></i></div> <div class="toggle"><i class="fa fa-caret-down" aria-hidden="true"></i></div> <div class="input-menu-items"> <input type="text" class="cm-text-data" value="Hello" placeholder="text"> <input type="text" class="cm-text-function" value="Hello" placeholder="functionality"> </div> <div class="clone"><i class="fa fa-clone" aria-hidden="true"></i></div> <div class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></div> </div><ul class="sub-menu"></ul></li>');
         }
         var a = $('#sortable');
-        $(document).on('click', '.add', function() {
+        $(document).on('click', '.add-form', function() {
 
             $('.todo-list').show(1000);
+            $(this).hide(1000);
 
             // menu(a);
         });
@@ -117,6 +163,7 @@ jQuery(document).ready(function($){
         $(document).on('click', '.form-close', function() {
 
             $('.todo-list').hide(1000);
+            $('.add-form').show(1000);
 
             // menu(a);
         });
@@ -165,6 +212,24 @@ jQuery(document).ready(function($){
         });
         $(document).on("click", "#sortable div.delete", function() {
             $(this).closest("li").remove();
+
+            $( ".delete-form-content" ).submit(function( event ) {
+
+                console.log('DDDD FORM');
+
+                event.preventDefault();
+
+                var data_url = $(this).attr('action');
+
+
+                console.log(data_url);
+
+
+            });
+
+
+
+
         });
         $(document).on("click", ".code", function() {
             $('body').toggleClass('code-view');

@@ -14,13 +14,16 @@ urlpatterns = [
 
     path('project-create/', views.ProjectCreate.as_view(), name='project_create'),
 
-    path('todo-create/', views.ProjectTodoCreate.as_view(), name='todo_create'),
 
     # projec/2/delete/
     path('project/<int:pk>/delete/', views.ProjecDelete.as_view(), name='project_delete'),
 
+    path('todo/<int:pk>/delete/', views.TodoDelete.as_view(), name='todo_delete'),
+
     # projec/2/update/
     path('project/<int:pk>/update/', views.ProjecUpdate.as_view(), name='project_update'),
+
+    path('todo/<int:pk>/update/', views.TodoUpdate.as_view(), name='todo_update'),
 
 ]
 app_name = 'todo'

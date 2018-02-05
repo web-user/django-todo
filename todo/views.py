@@ -31,7 +31,7 @@ class LoginFormView(FormView):
         user = authenticate(username=cd['username'], password=cd['password'])
         if user and user.is_active:
             login(self.request, user)
-            return redirect('/todo/')
+            return redirect(reverse('todo:home'))
         return HttpResponse('Invalid User')
 
     def form_invalid(self, form):
@@ -52,20 +52,30 @@ class RegisterFormView(FormView):
 
         if user and user.is_active:
             login(self.request, user)
-            return redirect('/todo/')
+            return redirect(reverse('todo:home'))
         return HttpResponse('Invalid User')
 
     def form_invalid(self, form):
         return HttpResponse('Invalid login')
 
 
-class ProjectListView(LoginRequiredMixin, ListView):
+class ProjectListView(LoginRequiredMixin, CreateView):
 
-    login_url = '/login/'
-    template_name = 'todo/list.html'
-    context_object_name = 'posts'
-    model = Project
     form_class = TodoForm
+    template_name = 'todo/content.html'
+    success_url = reverse_lazy('todo:home')
+
+    def get_context_data(self, **kwargs):
+        kwargs['projects'] = Project.objects.all()
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print("Invalid data")
+        return super().form_invalid(form)
+
 
 
 def logout_view(request):
@@ -81,7 +91,6 @@ class ProjectCreate(CreateView):
     success_url = reverse_lazy('todo:home')
 
 
-
 class ProjecUpdate(UpdateView):
     model = Project
     fields = ['title', 'color']
@@ -93,11 +102,15 @@ class ProjecDelete(DeleteView):
     success_url = reverse_lazy('todo:home')
 
 
-class ProjectTodoCreate(CreateView):
+class TodoDelete(DeleteView):
+    model = Todo
+    success_url = reverse_lazy('todo:home')
 
-    form_class = TodoForm
-    template_name = 'todo/list.html'
 
+class TodoUpdate(UpdateView):
+    model = Todo
+    fields = ['title']
+    success_url = reverse_lazy('todo:home')
 
 
 

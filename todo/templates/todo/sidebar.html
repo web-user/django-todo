@@ -1,0 +1,77 @@
+<div class="cm-all-menu-items">
+    <div class="cm-project-list">
+        <ul>
+            {% for item in projects %}
+
+            <li data-id="{{item.id}}">
+                <div class="cm-proj-mane">
+                    <a>
+                        <i class="fa fa-cube" aria-hidden="true"></i>{{item.title}}
+                        <span class="color-project">{{item.color}}</span>
+                    </a>
+                </div>
+                <div class="cm-proj-option">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                    <div class="project-option">
+                        <span class="color-project">
+                            <a data-toggle="modal" data-target="#projectedit_{{item.id}}">Edit</a>
+                        </span>
+
+                        <span class="color-project">
+
+                            <form action="{% url 'todo:project_delete' item.id %}" method="post">
+                                <input type="hidden" name="project_id" value="{{item.id}}">
+                                <button type="submit">Delete</button>
+
+                            </form>
+                        </span>
+                    </div>
+                </div>
+
+                                        <!-- Modal -->
+                        <div class="modal fade" id="projectedit_{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <form action="{% url 'todo:project_update' item.id %}" method="post">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="projectedit_{{item.id}}_Title">Modal title {{item.id}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label >Title</label>
+                                            <input type="text" class="form-control" name="title" value="{{item.title}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Color</label>
+                                            <input type="text" class="form-control" name="color" value="{{item.color}}">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                          </div>
+                        </div>
+
+
+            </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+    <div class="cm-file-menu-option">
+        <ul>
+            <li modal-click="add-website" class="cm-add-website" title="Add Project">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </li>
+        </ul>
+    </div>
+</div>
+

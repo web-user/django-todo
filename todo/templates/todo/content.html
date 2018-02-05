@@ -1,0 +1,59 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+
+
+
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+
+        <div class="edit-menu-wrap col-md-12" clear>
+            <!--Sidebar-->
+            {% include "todo/sidebar.html" %}
+
+            <!--Todo list-->
+            {% include "todo/todo_list.html" %}
+        </div>
+
+
+        <div class="editor-wrapper">
+            <h2><i class="fa fa-database" aria-hidden="true"></i>Into Your Database<span><i class="fa fa-times" aria-hidden="true"></i></span></h2>
+            <div id="editor"></div>
+        </div>
+
+        <div class="modals-overlay"></div>
+        <div class="cm-model-wrapper">
+            <div class="cm-project-modal" modal-data="add-website">
+
+                <form class="add-project" id="form_project" method="post" action="{% url 'todo:project_create' %}">
+                    {% csrf_token %}
+                    <div class="cm-project-modal-header">
+                        <label>Create New Project</label>
+                    </div>
+                    <div class="cm-project-setting-inner-wrapper">
+                      <div class="color-field">
+                           <input type="color" id="favcolor" name="color" value="" />
+                           <input class="field-show project-title" type="text" name="title"/>
+                      </div>
+
+                    </div>
+                    <div class="cm-project-modal-footer">
+                        <div class="form-action-box">
+                            <button class="data-file-save btn-def button-add" model-close>Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+{% endblock %}

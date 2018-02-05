@@ -47,11 +47,15 @@ class Project(models.Model):
         return self.title
 
 class Todo(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    PRIORIT_CHOICES = (
+        ('high', 'High Priority'),
+        ('medium', 'Medium Priority'),
+        ('low', 'Low Priority'),
+    )
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='todos')
     title = models.CharField(max_length=250)
-    project_title = models.CharField(max_length=100)
-    project_color = models.TextField()
-    date_todo = models.DateTimeField(auto_now_add=True)
+    todo_priority = models.CharField(max_length=250, choices=PRIORIT_CHOICES, default='high')
+    date_todo = models.DateField()
 
     def __str__(self):
         return self.title

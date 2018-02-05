@@ -12,4 +12,8 @@
 
 ```pip install psycopg2```
 
+```python manage.py makemigrations todo```
+
+```python manage.py migrate```
+
 

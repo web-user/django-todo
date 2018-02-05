@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}/">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -13,7 +16,7 @@
 
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="{% url "todo:home" %}">Todo</a>
+        <a class="navbar-brand" href='{% url "todo:home" %}'>Todo</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,14 +29,14 @@
           <ul class="navbar-nav mt-2 mt-md-0">
             {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url "todo:logout" %}">Logout</a>
+                    <a class="nav-link" href='{% url "todo:logout" %}'>Logout</a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url "todo:login" %}">Login</a>
+                    <a class="nav-link" href='{% url "todo:login" %}'>Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url "todo:registration" %}">Registration</a>
+                    <a class="nav-link" href='{% url "todo:registration" %}'>Registration</a>
                 </li>
             {% endif %}
 
@@ -44,47 +47,41 @@
     </header>
 
 
-        <div class="container-fluid">
+    <div class="container-fluid">
+        <!--Main content code to be written here -->
+        <main role="main">
 
-            <!--Main content code to be written here -->
-                <main role="main">
+          <div class="marketing">
+              {% block content %}
+              {% endblock %}
 
-
-
-                  <!-- Marketing messaging and featurettes
-                  ================================================== -->
-                  <!-- Wrap the rest of the page in another container to center all the content. -->
-
-                  <div class="marketing">
-
-                  {% block content %}
-                  {% endblock %}
+          </div><!-- /.container -->
 
 
-                  </div><!-- /.container -->
-
-
-              <!-- FOOTER -->
-              <footer class="container">
-                <p class="float-right"><a href="#">Back to top</a></p>
-                <p>© 2017-2018 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-              </footer>
-            </main>
+          <!-- FOOTER -->
+          <footer class="container">
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p>© 2017-2018 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+          </footer>
+        </main>
     </div>
 
 
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"></script>
-    <script src="https://ace.c9.io/build/src-min-noconflict/ace.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"></script>
+<script src="https://ace.c9.io/build/src-min-noconflict/ace.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <script src="{% static 'js/colorpicker.js' %}" crossorigin="anonymous"></script>
-    <script src="{% static 'js/custom.js' %}" crossorigin="anonymous"></script>
+<script src="{% static 'js/colorpicker.js' %}" crossorigin="anonymous"></script>
+<script src="{% static 'js/custom.js' %}" crossorigin="anonymous"></script>
 
 
 <script>
@@ -98,10 +95,6 @@
         console.log(theInput.value)
 
     }, false);
-
-
-
-
 
 </script>
 

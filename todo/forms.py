@@ -25,6 +25,7 @@ class TodoForm(forms.ModelForm):
 
     class Meta:
         model = Todo
+        fields = ['project', 'title', 'todo_priority', 'date_todo']
         exclude = ()
 
 TodoFormSet = inlineformset_factory(Project, Todo, form=TodoForm, extra=1)

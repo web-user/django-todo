@@ -57,6 +57,8 @@ class Todo(models.Model):
     todo_priority = models.CharField(max_length=250, choices=PRIORIT_CHOICES, default='high')
     date_todo = models.DateField()
 
+    objects = models.Manager()
+
     def __str__(self):
         return self.title
 

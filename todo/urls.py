@@ -2,6 +2,7 @@ from django.urls import path, include
 from django.contrib.auth.views import login
 from django.contrib.auth.views import logout
 from django.contrib.auth.views import logout_then_login
+from rest_framework.urlpatterns import format_suffix_patterns
 
 from . import views
 
@@ -25,5 +26,10 @@ urlpatterns = [
 
     path('todo/<int:pk>/update/', views.TodoUpdate.as_view(), name='todo_update'),
 
+    path('todo/API/', views.TodoListAPI.as_view(), name='todo'),
+
 ]
+
 app_name = 'todo'
+
+urlpatterns = format_suffix_patterns(urlpatterns)

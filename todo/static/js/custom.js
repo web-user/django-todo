@@ -100,6 +100,30 @@ jQuery(document).ready(function($){
             // menu(a);
         });
 
+	        $(document).on('click', '.get-today-todo', function(e) {
+
+                e.preventDefault();
+
+                	$.get( "http://127.0.0.1:8000/todo/API/", function( data ) {
+                      // $( "body" )
+                      //   .append( "Name: " + data.name ) // John
+                      //   .append( "Time: " + data.time ); //  2pm
+
+                            console.log(data.id)
+
+          
+                    }, "json" );
+
+
+        });
+
+
+
+
+
+
+
+
 
 
 	// Getter

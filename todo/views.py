@@ -7,18 +7,29 @@ from .forms import LoginForm, TodoFormSet, TodoForm
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 from .models import Post, Project, Todo
-from .serializers import ProjectSerializer
+from .serializers import TodoSerializer
 from django.contrib.auth.forms import UserCreationForm
 
 
 from rest_framework import routers, serializers, viewsets
 
 from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from django.views.generic import FormView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import json
 
+
+class TodoListAPI(APIView):
+
+    def get(self, request):
+        todos = Todo.objects.all()
+        serializer = TodoSerializer(todos, many=True)
+        return Response(serializer.data)
+
+    def post(self):
+        pass
 
 
 class LoginFormView(FormView):
@@ -111,6 +122,4 @@ class TodoUpdate(UpdateView):
     model = Todo
     fields = ['title']
     success_url = reverse_lazy('todo:home')
-
-
 

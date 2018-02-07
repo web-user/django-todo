@@ -56,6 +56,7 @@ class Todo(models.Model):
     title = models.CharField(max_length=250)
     todo_priority = models.CharField(max_length=250, choices=PRIORIT_CHOICES, default='high')
     date_todo = models.DateField()
+    album_logo = models.FileField()
 
     objects = models.Manager()
 

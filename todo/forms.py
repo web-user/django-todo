@@ -4,6 +4,20 @@ from django.contrib.auth.models import User
 from django.forms import inlineformset_factory
 from .models import Project, Todo
 
+import django_filters
+
+
+class SprintFilter(django_filters.FilterSet):
+
+    date = django_filters.DateFilter(name='date_todo', lookup_expr='gte')
+    end_date = django_filters.DateFilter(name='date_todo', lookup_expr='lte')
+
+
+    class Meta:
+        model = Todo
+        fields = ('date', 'end_date' )
+
+
 class LoginForm(forms.Form):
 	username = forms.CharField()
 	password = forms.CharField(widget=forms.PasswordInput)

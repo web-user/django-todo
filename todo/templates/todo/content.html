@@ -26,7 +26,7 @@
         <div class="cm-model-wrapper">
             <div class="cm-project-modal" modal-data="add-website">
 
-                <form class="add-project" id="form_project" method="post" action="{% url 'todo:project_create' %}">
+                <form enctype="multipart/form-data" class="add-project" id="form_project" method="post" action="{% url 'todo:project_create' %}">
                     {% csrf_token %}
                     <div class="cm-project-modal-header">
                         <label>Create New Project</label>
@@ -35,6 +35,7 @@
                       <div class="color-field">
                            <input type="color" id="favcolor" name="color" value="" />
                            <input class="field-show project-title" type="text" name="title"/>
+                          <input type="file" name="album_logo"/>
                       </div>
 
                     </div>

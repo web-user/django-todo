@@ -3,33 +3,46 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy, reverse
 
-from .forms import LoginForm, TodoFormSet, TodoForm
+from .forms import LoginForm, TodoFormSet, TodoForm, SprintFilter
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 from .models import Post, Project, Todo
 from .serializers import TodoSerializer
 from django.contrib.auth.forms import UserCreationForm
 
+import django_filters.rest_framework
+import django_filters
 
-from rest_framework import routers, serializers, viewsets
+from rest_framework import routers, serializers, viewsets, filters
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+from rest_framework import generics
+
 from django.views.generic import FormView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+
 import json
 
+IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
-class TodoListAPI(APIView):
 
-    def get(self, request):
-        todos = Todo.objects.all()
-        serializer = TodoSerializer(todos, many=True)
-        return Response(serializer.data)
+class TodoListAPI(generics.ListAPIView):
 
-    def post(self):
-        pass
+
+    queryset = Todo.objects.order_by('date_todo')
+    serializer_class = TodoSerializer
+    filter_class = SprintFilter
+    search_fields = ('title', )
+    ordering_fields = ('date_todo', 'title', )
+    filter_backends = (
+        django_filters.rest_framework.DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    )
+
 
 
 class LoginFormView(FormView):

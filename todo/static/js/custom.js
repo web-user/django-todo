@@ -96,14 +96,51 @@ jQuery(document).ready(function ($) {
 
         $(document).on('click', '.get-today-todo', function (e) {
 
+            var date_today = new Date().toString('yyyy-MM-dd');
+
             e.preventDefault();
 
-            $.get("http://127.0.0.1:8000/todo/API/?date=2018-02-09&end_date=", function (data) {
+            var d = new Date();
+
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+
+            var output = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+
+
+            console.log(output);
+
+            $.get("http://127.0.0.1:8000/todo/API/?date="+ output +"&end_date=" + output, function (data) {
                 // $( "body" )
                 //   .append( "Name: " + data.name ) // John
                 //   .append( "Time: " + data.time ); //  2pm
 
                 // $('#sortable').html();
+
+                $.each(data, function (index, value) {
+                    // alert( index + ": " + value );
+
+                    console.log('project title: ' + value.project_title + ' title: ' + value.title)
+                });
+
+
+                function render() {
+                    $("#sortable >.list-todo").remove();
+                    for (var i = 0; i < data.length; i++) {
+                        var person = data[i];
+                        var clone = $("#templates>.list-todo").clone();
+                        clone.find(".todo-title").text(person.title);
+                        clone.find(".project-title").text(person.project_title);
+                        clone.find(".project-color").text(person.color);
+
+
+                        $("#sortable").prepend(clone);
+                    }
+                }
+
+                render();
 
 
                 //
@@ -122,8 +159,6 @@ jQuery(document).ready(function ($) {
                 //         console.log("Error !!!")
                 //     }
                 // });
-
-
 
 
                 console.log(data.id)
@@ -366,3 +401,5 @@ jQuery(document).ready(function ($) {
 
 
 });
+
+

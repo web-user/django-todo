@@ -208,7 +208,7 @@ body {
 }
 
 #sortable .input-menu-items {
-    width: calc(100% - 160px);
+    width: 95%;
     background: #e2e2e2;
     height: 35px;
 }
@@ -1068,3 +1068,12 @@ menu > ul:before,menu > ul:after {
 
 
 /*-----Menu Default Style------|END---*/
+
+
+
+ #templates {
+  display: none;
+}
+.fail {
+  color: red;
+}

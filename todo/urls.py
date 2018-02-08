@@ -28,6 +28,7 @@ urlpatterns = [
 
     path('todo/API/', views.TodoListAPI.as_view(), name='todo'),
 
+
 ]
 
 app_name = 'todo'

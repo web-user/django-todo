@@ -1,44 +1,42 @@
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
 
-    $(document).ready(function() {
-        var max_fields      = 10; //maximum input boxes allowed
-        var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    $(document).ready(function () {
+        var max_fields = 10; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
         var wrapper_project = $(".input_fields_wrap_project"); //Fields wrapper
-        var add_button      = $(".add_field_button"); //Add button ID
+        var add_button = $(".add_field_button"); //Add button ID
 
         var content_project = $(".content-project");
 
-        var add_button_project      = $(".add_field_project_button"); //Add button ID
+        var add_button_project = $(".add_field_project_button"); //Add button ID
 
         var x = 1; //initlal text box count
-        $(add_button).click(function(e){ //on add input button click
+        $(add_button).click(function (e) { //on add input button click
             e.preventDefault();
-            if(x < max_fields){ //max input box allowed
+            if (x < max_fields) { //max input box allowed
                 x++; //text box increment
                 $(wrapper).append('<div><input class="field-show" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
             }
         });
 
-        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-            e.preventDefault(); $(this).parent('div').remove(); x--;
+        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
         })
 
 
-
-
-
-        $(add_button_project).click(function(e){ //on add input button click
+        $(add_button_project).click(function (e) { //on add input button click
             e.preventDefault();
             $(this).css('display', 'none');
             $(content_project).show(1000);
         });
 
 
-
-        $(wrapper_project).on("click",".close-block", function(e){ //user click on remove text
+        $(wrapper_project).on("click", ".close-block", function (e) { //user click on remove text
             e.preventDefault();
 
-            $(content_project).hide( 1000 );
+            $(content_project).hide(1000);
             $(add_button_project).css('display', 'block');
         })
 
@@ -51,13 +49,9 @@ jQuery(document).ready(function($){
         // })
 
 
-
-        $( ".add-form-content-1" ).submit(function( event ) {
+        $(".add-form-content-1").submit(function (event) {
 
             event.preventDefault();
-
-
-
 
 
             var data_title = '1';
@@ -70,15 +64,15 @@ jQuery(document).ready(function($){
             $.ajax({
                 type: "POST",
                 url: data_url,
-                data: $( this ).serialize(),
+                data: $(this).serialize(),
 
-                success: function(res){
+                success: function (res) {
 
                     console.log(res);
 
                     window.location.href = window.location;
                 },
-                error: function(){
+                error: function () {
                     console.log("Error !!!")
                 }
             });
@@ -87,10 +81,10 @@ jQuery(document).ready(function($){
         });
 
 
-	console.log('test script')
+        console.log('test script')
 
 
-        $(document).on('click', '.todo-option', function() {
+        $(document).on('click', '.todo-option', function () {
 
             $(this).children(".block-setting").toggle();
 
@@ -100,53 +94,62 @@ jQuery(document).ready(function($){
             // menu(a);
         });
 
-	        $(document).on('click', '.get-today-todo', function(e) {
+        $(document).on('click', '.get-today-todo', function (e) {
 
-                e.preventDefault();
+            e.preventDefault();
 
-                	$.get( "http://127.0.0.1:8000/todo/API/", function( data ) {
-                      // $( "body" )
-                      //   .append( "Name: " + data.name ) // John
-                      //   .append( "Time: " + data.time ); //  2pm
+            $.get("http://127.0.0.1:8000/todo/API/?date=2018-02-09&end_date=", function (data) {
+                // $( "body" )
+                //   .append( "Name: " + data.name ) // John
+                //   .append( "Time: " + data.time ); //  2pm
 
-                            console.log(data.id)
+                // $('#sortable').html();
 
 
-                    }, "json" );
+                //
+                // $.ajax({
+                //     type: "POST",
+                //     url: 'http://127.0.0.1:8000/todo/get/API/',
+                //     data: data,
+                //
+                //     success: function(res){
+                //
+                //         console.log(res);
+                //
+                //
+                //     },
+                //     error: function(){
+                //         console.log("Error !!!")
+                //     }
+                // });
+
+
+
+
+                console.log(data.id)
+
+                console.log(data.id)
+
+
+            }, "json");
 
 
         });
 
 
-
-
-
-
-
-
-
-
-	// Getter
+        // Getter
 
 
 // Setter
-$( "#id_date_todo" ).datepicker();
+        $("#id_date_todo").datepicker();
 
 
-
-
-
-
-
-
-                var data;
+        var data;
         /*----------Creating Slug------------|START-------*/
-        var slug = function(str) {
+        var slug = function (str) {
             var $slug = '';
             var trimmed = $.trim(str);
-            $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').
-            replace(/-+/g, '-').
-            replace(/^-|-$/g, '');
+            $slug = trimmed.replace(/[^a-z0-9-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
             return $slug.toLowerCase();
         }
         /*----------Creating Slug------------|END-------*/
@@ -154,6 +157,7 @@ $( "#id_date_todo" ).datepicker();
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/json");
+
         /*-------Ace Editor----------|END--------*/
         function createItem(obj) {
             var $obj = null;
@@ -171,11 +175,13 @@ $( "#id_date_todo" ).datepicker();
             }
             return $obj;
         }
+
         function menu(ul) {
             var li = $(ul).append('<li> <div class="child-wrap"> <div class="drag"><i class="fa fa-bars" aria-hidden="true"></i></div> <div class="toggle"><i class="fa fa-caret-down" aria-hidden="true"></i></div> <div class="input-menu-items"> <input type="text" class="cm-text-data" value="Hello" placeholder="text"> <input type="text" class="cm-text-function" value="Hello" placeholder="functionality"> </div> <div class="clone"><i class="fa fa-clone" aria-hidden="true"></i></div> <div class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></div> </div><ul class="sub-menu"></ul></li>');
         }
+
         var a = $('#sortable');
-        $(document).on('click', '.add-form', function() {
+        $(document).on('click', '.add-form', function () {
 
             $('.todo-list').show(1000);
             $(this).hide(1000);
@@ -184,7 +190,7 @@ $( "#id_date_todo" ).datepicker();
         });
 
 
-        $(document).on('click', '.form-close', function() {
+        $(document).on('click', '.form-close', function () {
 
             $('.todo-list').hide(1000);
             $('.add-form').show(1000);
@@ -192,32 +198,34 @@ $( "#id_date_todo" ).datepicker();
             // menu(a);
         });
 
-        $(document).on('click', '.todo-list .clone', function() {
+        $(document).on('click', '.todo-list .clone', function () {
             // var b = $(this).closest('.child-wrap').nextAll('.sub-menu');
             console.log('CLONE ')
             // menu(b);
         });
-        $(document).on('click', '.code,.menu-prev', function() {
+        $(document).on('click', '.code,.menu-prev', function () {
             function FetchChild() {
                 var data = [];
-                $("#sortable > li").each(function() {
+                $("#sortable > li").each(function () {
                     data.push(buildJSON($(this)));
                 });
                 return data;
             }
+
             function buildJSON($li) {
                 var subObj = {
                     name: $li.find(".child-wrap .input-menu-items input.cm-text-data").val(),
                     functionality: $li.find(".child-wrap .input-menu-items input.cm-text-function").val()
                 };
-                $li.children("ul").children().each(function() {
-                        if (!subObj.children) {
-                            subObj.children = [];
-                        }
-                        subObj.children.push(buildJSON($(this)));
-                    });
+                $li.children("ul").children().each(function () {
+                    if (!subObj.children) {
+                        subObj.children = [];
+                    }
+                    subObj.children.push(buildJSON($(this)));
+                });
                 return subObj;
             }
+
             var obj = FetchChild();
             //$("[output]").html(JSON.stringify(obj, null, 2));
             editor.setValue(JSON.stringify(obj, null, 2));
@@ -225,19 +233,19 @@ $( "#id_date_todo" ).datepicker();
             data = createItem(obj);
             $('menu').html(data);
         });
-        $(document).ready(function() {
+        $(document).ready(function () {
             var drake = dragula($("#sortable").toArray(), {
                 mirrorContainer: $("#sortable")[0]
             });
         });
-        $(document).on("click", "#sortable div.toggle", function() {
+        $(document).on("click", "#sortable div.toggle", function () {
             $(this).toggleClass("toggle-active");
             $(this).closest(".child-wrap").next("ul").toggle();
         });
-        $(document).on("click", "#sortable div.delete", function() {
+        $(document).on("click", "#sortable div.delete", function () {
             $(this).closest("li").remove();
 
-            $( ".delete-form-content" ).submit(function( event ) {
+            $(".delete-form-content").submit(function (event) {
 
                 console.log('DDDD FORM');
 
@@ -252,29 +260,27 @@ $( "#id_date_todo" ).datepicker();
             });
 
 
-
-
         });
-        $(document).on("click", ".code", function() {
+        $(document).on("click", ".code", function () {
             $('body').toggleClass('code-view');
         });
-        $(document).on("click", ".editor-wrapper h2 span", function() {
+        $(document).on("click", ".editor-wrapper h2 span", function () {
             $('body').removeClass('code-view');
         });
-        $(document).on("click", ".menu-prev", function() {
+        $(document).on("click", ".menu-prev", function () {
             $('body').toggleClass('menu-view');
         });
-        $(document).on("click", "close", function() {
+        $(document).on("click", "close", function () {
             $('body').removeClass('menu-view');
         });
-        $(document).on("click", function(e) {
+        $(document).on("click", function (e) {
             $('body').removeClass('code-view');
         });
-        $(document).on("click", ".editor-wrapper,.nav-app-option", function(e) {
+        $(document).on("click", ".editor-wrapper,.nav-app-option", function (e) {
             e.stopPropagation();
         });
-        $(".data-file-save").click(function() {
-            setTimeout(function() {
+        $(".data-file-save").click(function () {
+            setTimeout(function () {
 
                 var websiteName = $('[name="website-name"]').val();
                 var websiteURL = $('[name="website-url"]').val();
@@ -288,23 +294,23 @@ $( "#id_date_todo" ).datepicker();
         });
         /*---------Flex Modal---------*/
         var getModalData;
-        $("[modal-click]").click(function() {
+        $("[modal-click]").click(function () {
             getModalData = $(this).attr("modal-click");
             $('[modal-data="' + getModalData + '"]').addClass("modal-open");
             $(".modals-overlay").toggleClass("overlay-open");
             $('.cm-model-wrapper').addClass('model-wrap-open');
         });
-        $(".modals-overlay,.cm-model-wrapper").click(function(e) {
+        $(".modals-overlay,.cm-model-wrapper").click(function (e) {
             $('[modal-data="' + getModalData + '"]').removeClass("modal-open");
             $(".modals-overlay").removeClass("overlay-open");
             $('.cm-model-wrapper').removeClass('model-wrap-open');
         });
-        $("[modal-data]").click(function(e) {
+        $("[modal-data]").click(function (e) {
             e.stopPropagation();
         });
-        $("[model-close]").click(function() {
+        $("[model-close]").click(function () {
             $(this).addClass('loading');
-            setTimeout(function() {
+            setTimeout(function () {
                 $('[modal-data="' + getModalData + '"]').removeClass("modal-open");
                 $(".modals-overlay").removeClass("overlay-open");
                 $('.cm-model-wrapper').removeClass('model-wrap-open');
@@ -313,20 +319,21 @@ $( "#id_date_todo" ).datepicker();
             }, 1000);
         });
         /*---------END Flex Modal---------*/
-        $(document).on('click', '.cm-project-list ul li', function() {
+        $(document).on('click', '.cm-project-list ul li', function () {
             $(this).addClass('active-data').siblings().removeClass('active-data');
         });
-        $(document).ready(function() {
+        $(document).ready(function () {
             var urlDecode = location.hash;
             $('[href="' + urlDecode + '"]').parent('li').addClass('active-data');
         });
-        $('.advanced.setting-inner').click(function() {
+        $('.advanced.setting-inner').click(function () {
             $(this).next('.cm-adv-form-wrapper').slideToggle();
             $(this).toggleClass('adv-open')
         });
         /*------------------Testing-----------------------*/
-        $('.editor-wrapper h2 span').click(function() {
+        $('.editor-wrapper h2 span').click(function () {
             var JSONToDOM = JSON.parse(editor.getValue(), null, 2);
+
             function createDomww(obj) {
                 var $obj = null;
                 if (obj.name) {
@@ -343,37 +350,19 @@ $( "#id_date_todo" ).datepicker();
                 }
                 return $obj;
             }
+
             $('.cm-dynamic-data').empty();
             $('.cm-dynamic-data').append(createDomww(JSONToDOM));
-            setTimeout(function(){
+            setTimeout(function () {
                 $('.cm-dynamic-data > ul').attr('id', 'sortable').removeAttr('class');
-                 var drake = dragula($("#sortable").toArray(), {
-                mirrorContainer: $("#sortable")[0]
-            });
-            },1);
+                var drake = dragula($("#sortable").toArray(), {
+                    mirrorContainer: $("#sortable")[0]
+                });
+            }, 1);
         });
 
 
-
-
-
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });

@@ -3,6 +3,10 @@ from rest_framework import routers, serializers, viewsets
 
 class TodoSerializer(serializers.ModelSerializer):
 
+    color = serializers.ReadOnlyField(source='project.color')
+    project_title = serializers.ReadOnlyField(source='project.title')
+
     class Meta:
         model = Todo
-        fields = '__all__'
+        fields = ('id', 'project', 'title', 'todo_priority', 'date_todo',
+                  'album_logo', 'color', 'project_title')

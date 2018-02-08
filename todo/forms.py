@@ -7,7 +7,7 @@ from .models import Project, Todo
 import django_filters
 
 
-class SprintFilter(django_filters.FilterSet):
+class TodoFilter(django_filters.FilterSet):
 
     date = django_filters.DateFilter(name='date_todo', lookup_expr='gte')
     end_date = django_filters.DateFilter(name='date_todo', lookup_expr='lte')

@@ -1,34 +1,9 @@
 <div class="cm-all-dynamic-data">
     <div class="cm-dynamic-data">
 
+        <!-- Todo Template -->
 
-        <ul id="name-list">
-
-        </ul>
-        <!-- <ol id="name-list"></ol> -->
-
-        <div id="templates">
-            <li class="list-todo">
-                <div class="child-wrap">
-                    <div class="input-menu-items">
-                        <span class="todo-title cm-text-data"></span>
-                        <span class="project-title cm-text-function"></span>
-                        <span class="project-color cm-text-function"></span>
-                    </div>
-                    <div class="todo-option">
-                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                        <div class="block-setting">
-                            <form class="delete-form-content"  method="post">
-                                <input type="hidden" name="todo_id" value="">
-                                <input type="submit" value="Delete"/>
-                            </form>
-                            <a data-toggle="modal" >Edit</a>
-                        </div>
-                    </div>
-                </div>
-
-            </li>
-        </div>
+            {% include "todo/todo_template.html" %}
 
 
         <ul id="sortable">

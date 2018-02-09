@@ -94,16 +94,18 @@ jQuery(document).ready(function ($) {
             // menu(a);
         });
 
+
         $(document).on('click', '.get-today-todo', function (e) {
 
-            var date_today = new Date().toString('yyyy-MM-dd');
 
             e.preventDefault();
 
             var d = new Date();
 
+
             var month = d.getMonth() + 1;
             var day = d.getDate();
+
 
             var output = d.getFullYear() + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
@@ -112,19 +114,8 @@ jQuery(document).ready(function ($) {
 
             console.log(output);
 
-            $.get("http://127.0.0.1:8000/todo/API/?date="+ output +"&end_date=" + output, function (data) {
-                // $( "body" )
-                //   .append( "Name: " + data.name ) // John
-                //   .append( "Time: " + data.time ); //  2pm
 
-                // $('#sortable').html();
-
-                $.each(data, function (index, value) {
-                    // alert( index + ": " + value );
-
-                    console.log('project title: ' + value.project_title + ' title: ' + value.title)
-                });
-
+            $.get("http://127.0.0.1:8000/todo/API/?date=" + output + "&end_date=" + output, function (data) {
 
                 function render() {
                     $("#sortable >.list-todo").remove();
@@ -143,27 +134,63 @@ jQuery(document).ready(function ($) {
                 render();
 
 
-                //
-                // $.ajax({
-                //     type: "POST",
-                //     url: 'http://127.0.0.1:8000/todo/get/API/',
-                //     data: data,
-                //
-                //     success: function(res){
-                //
-                //         console.log(res);
-                //
-                //
-                //     },
-                //     error: function(){
-                //         console.log("Error !!!")
-                //     }
-                // });
+            }, "json");
 
 
-                console.log(data.id)
+        });
 
-                console.log(data.id)
+
+        $(document).on('click', '.get-today-seven', function (e) {
+
+
+            e.preventDefault();
+
+            var d = new Date();
+
+
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+
+
+            var output = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+
+
+            console.log(output);
+
+
+            var currentDate = new Date(new Date().getTime() + 168 * 60 * 60 * 1000);
+
+
+            var day_todo = currentDate.getDate()
+            var month_todo = currentDate.getMonth() + 1;
+            var year_todo = currentDate.getFullYear()
+
+
+            var seven_day = year_todo + "-" + (month_todo < 10 ? '0' : '') + month_todo + "-" + (day_todo < 10 ? '0' : '') + day_todo;
+
+
+            console.log(seven_day);
+
+            $.get("http://127.0.0.1:8000/todo/API/?date=" + output + "&end_date=" + seven_day, function (data) {
+
+
+                function render() {
+                    $("#sortable >.list-todo").remove();
+                    for (var i = 0; i < data.length; i++) {
+                        var person = data[i];
+                        var clone = $("#templates>.list-todo").clone();
+                        clone.find(".todo-title").text(person.title);
+                        clone.find(".project-title").text(person.project_title);
+                        clone.find(".project-color").text(person.color);
+
+
+                        $("#sortable").prepend(clone);
+                    }
+                }
+
+                render();
 
 
             }, "json");

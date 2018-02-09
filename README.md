@@ -27,3 +27,7 @@
 ```pip install django-filter```
 
 
+```API link http://127.0.0.1:8000/todo/API/```
+
+
+```TODO link http://127.0.0.1:8000/dashboard/```

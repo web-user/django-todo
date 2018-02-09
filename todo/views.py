@@ -24,6 +24,8 @@ from rest_framework import generics
 from django.views.generic import FormView, ListView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from django.contrib import messages
+
 import json
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
@@ -83,7 +85,9 @@ class ProjectListView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('todo:home')
 
     def get_context_data(self, **kwargs):
-        kwargs['projects'] = Project.objects.exclude(todos__completed_tasks = True)
+        # kwargs['projects'] = Project.objects.exclude(todos__completed_tasks=True)
+        kwargs['projects'] = Project.objects.all()
+        kwargs['project_todos'] = Project.objects.filter(todos__completed_tasks=False)
         # print(request.GET)
         return super().get_context_data(**kwargs)
 
@@ -116,6 +120,15 @@ class ProjecUpdate(UpdateView):
 class ProjecDelete(DeleteView):
     model = Project
     success_url = reverse_lazy('todo:home')
+
+    def delete(self, request, *args, **kwargs):
+        project = Project.objects.get(pk=kwargs['pk'])
+        todos = project.todos.all()
+        if todos.filter(completed_tasks=False):
+            messages.error(request, 'Oops, something bad happened')
+            return redirect(reverse('todo:home'))
+        else:
+            return super().delete(request, *args, **kwargs)
 
 
 class TodoDelete(DeleteView):

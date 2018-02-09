@@ -3,7 +3,7 @@
 
         <!-- Todo Template -->
 
-            {% include "todo/todo_template.html" %}
+        {% include "todo/todo_template.html" %}
 
 
         <ul id="sortable">
@@ -11,10 +11,11 @@
 
             {% for todo in project.todos.all %}
 
+
             <li class="list-todo">
                 <div class="child-wrap">
                     <div class="input-menu-items">
-                        <span class="cm-text-data">{{ todo }}</span>
+                        <span class="cm-text-data">{{ todo }} </span>
                         <span class="cm-text-function">{{project}}</span>
                         <span class="cm-text-function">{{project.color}}</span>
                     </div>
@@ -26,48 +27,54 @@
                                 <input type="hidden" name="todo_id" value="{{todo.id}}">
                                 <input type="submit" value="Delete"/>
                             </form>
+                            <form class="delete-form-content" action="{% url 'todo:todo_update' todo.id %}"
+                                  method="post">
+                                <input type="hidden" name="completed_tasks" value="True">
+                                <input type="hidden" class="form-control" name="title" value="{{todo.title}}">
+                                <input type="submit" value="Completed"/>
+                            </form>
+
                             <a data-toggle="modal" data-target="#todo_{{todo.id}}">Edit</a>
                         </div>
                     </div>
                 </div>
 
-                            <!-- Modal -->
+                <!-- Modal -->
                 <div class="modal fade" id="todo_{{todo.id}}" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
 
-                        <form action="{% url 'todo:todo_update' todo.id %}" method="post">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="todo_{{todo.id}}_Title">Modal title {{todo.id}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" class="form-control" name="title" value="{{todo.title}}">
+                            <form action="{% url 'todo:todo_update' todo.id %}" method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="todo_{{todo.id}}_Title">Modal title {{todo.id}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <div class="form-group">
-                                    <label>Color</label>
-                                    <input type="text" class="form-control" name="color" value="">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control" name="title" value="{{todo.title}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Color</label>
+                                        <input type="text" class="form-control" name="color" value="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
 
-                        </form>
+                            </form>
 
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
             </li>
-
 
 
             {% endfor %}

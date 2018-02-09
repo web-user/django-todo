@@ -31,6 +31,9 @@
             <ul class="navbar-nav mt-2 mt-md-0">
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
+                    <a class="nav-link todo_api" data-url='{% url "todo:todo_api" %}' href='#'><i class="fa fa-list-alt" aria-hidden="true"></i> Completed tasks</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href='{% url "todo:logout" %}'>Logout</a>
                 </li>
                 {% else %}

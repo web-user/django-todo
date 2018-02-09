@@ -9,4 +9,4 @@ class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
         fields = ('id', 'project', 'title', 'todo_priority', 'date_todo',
-                  'album_logo', 'color', 'project_title')
+                  'album_logo', 'completed_tasks', 'color', 'project_title')

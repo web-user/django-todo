@@ -26,7 +26,7 @@ urlpatterns = [
 
     path('todo/<int:pk>/update/', views.TodoUpdate.as_view(), name='todo_update'),
 
-    path('todo/API/', views.TodoListAPI.as_view(), name='todo'),
+    path('todo/API/', views.TodoListAPI.as_view(), name='todo_api'),
 
 
 ]

@@ -12,10 +12,14 @@ class TodoFilter(django_filters.FilterSet):
     date = django_filters.DateFilter(name='date_todo', lookup_expr='gte')
     end_date = django_filters.DateFilter(name='date_todo', lookup_expr='lte')
 
+    # completed_tasks
+
+    status_display = django_filters.AllValuesFilter(name='completed_tasks')
+
 
     class Meta:
         model = Todo
-        fields = ('date', 'end_date' )
+        fields = ('date', 'end_date', 'status_display' )
 
 
 class LoginForm(forms.Form):

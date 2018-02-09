@@ -139,6 +139,38 @@ jQuery(document).ready(function ($) {
 
         });
 
+        $(document).on('click', 'a.todo_api', function (e) {
+
+            e.preventDefault();
+
+            var url_api = $(this).data('url');
+
+
+            $.get( url_api + "?status_display=True", function (data) {
+
+
+                function render() {
+                    $("#sortable >.list-todo").remove();
+                    for (var i = 0; i < data.length; i++) {
+                        var person = data[i];
+                        var clone = $("#templates>.list-todo").clone();
+                        clone.find(".todo-title").text(person.title);
+                        clone.find(".project-title").text(person.project_title);
+                        clone.find(".project-color").text(person.color);
+
+
+                        $("#sortable").prepend(clone);
+                    }
+                }
+
+                render();
+
+
+            }, "json");
+
+
+        });
+
 
         $(document).on('click', '.get-today-seven', function (e) {
 

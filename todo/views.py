@@ -34,7 +34,7 @@ class TodoListAPI(generics.ListAPIView):
     serializer_class = TodoSerializer
     filter_class = TodoFilter
     search_fields = ('title',)
-    ordering_fields = ('date_todo', 'title',)
+    ordering_fields = ('date_todo', 'title', 'status_display')
     filter_backends = (
         django_filters.rest_framework.DjangoFilterBackend,
         filters.SearchFilter,
@@ -83,7 +83,7 @@ class ProjectListView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('todo:home')
 
     def get_context_data(self, **kwargs):
-        kwargs['projects'] = Project.objects.all()
+        kwargs['projects'] = Project.objects.exclude(todos__completed_tasks = True)
         # print(request.GET)
         return super().get_context_data(**kwargs)
 
@@ -125,5 +125,5 @@ class TodoDelete(DeleteView):
 
 class TodoUpdate(UpdateView):
     model = Todo
-    fields = ['title']
+    fields = ['title', 'completed_tasks']
     success_url = reverse_lazy('todo:home')
